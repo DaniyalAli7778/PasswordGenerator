@@ -6,15 +6,17 @@ export default function PasswordGenerator() {
   let [numberAllowed, setNumberAllowed] = useState(false);
   let [charAllowed, setCharAllowed] = useState(false);
   let [password, setPassword] = useState("");
-  const passwordgenerator = useCallback(() => {
+  const passwordGenerator = useCallback(() => {
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    if (numberAllowed) str += 123456789;
-    for (let i = 0; i <= array.length; i++) {
-      pass = Math.floor(Math.random(str));
+    if (numberAllowed) str += "123456789";
+    if (charAllowed) str+= !"@#$%^&*()_+{}[]=--";    for (let i = 1; i <= array.length; i++) {
+      pass = Math.floor(Math.random( ) * str.length + 1);
+      pass = str.charAt( charAllowed)
+      setPassword(pass);
     }
   }, [length, numberAllowed, charAllowed, setPassword]);
-
+   
   return (
     <>
       <div className="w-full h-screen text-white m-0 p-0 flex justify-center items-center	">
