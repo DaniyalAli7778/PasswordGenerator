@@ -1,9 +1,9 @@
-import { useState } from 'react'
+ 
  
 import './App.css'
 import PasswordGenerator from './Components/Password-Generator'
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>
