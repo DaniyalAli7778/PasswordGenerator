@@ -1,4 +1,4 @@
-import { useCallback, useState,useEffect } from "react";
+import { useCallback, useState,useEffect} from "react";
 
 export default function PasswordGenerator() {
   let [length, setLength] = useState(8);
@@ -7,20 +7,20 @@ export default function PasswordGenerator() {
   let [charAllowed, setCharAllowed] = useState(false);
   let [password, setPassword] = useState("");
   const passwordGenerator = useCallback(() => {
-    var pass = "";
+    var pass =  "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numberAllowed) str += "123456789";
-    if (charAllowed) str += !"@#$%^&*()_+{}[]=--";
-    for (let i = 1; i <=  length.length; i++) {
-      let char= Math.floor(Math.random() * str.length + 1);
-      pass = str.charAt(char);
-      pass = char;
+    if (charAllowed) str +=  "@#$%^&*()_+{}[]=--";
+    for (let i = 1; i <=  length; i++) {
+      let char= Math.floor(Math.random() * str.length + 1 );
+      pass += str.charAt(char);
+     
       setPassword(pass);
     }
-  }, [length, numberAllowed, charAllowed, setPassword]);
+  }, [length, numberAllowed, charAllowed,  setPassword]);
 useEffect(()=>{
   passwordGenerator();
-},[length, numberAllowed, charAllowed,passwordGenerator])
+},[length, numberAllowed, charAllowed,passwordGenerator, ])
   return (
     <>
       <div className="w-full h-screen text-white m-0 p-0 flex justify-center items-center	">
@@ -30,7 +30,7 @@ useEffect(()=>{
               type="text"
               readOnly=""
               className="w-46 bg-white text-orange-500 p-1 mb-4 "
-              value={pass}
+            value={password}
             />
             <button className="bg-blue-600 text-white p-1.5  rounded-lg  ">
               Copy
@@ -40,44 +40,43 @@ useEffect(()=>{
           <span>
             <input
               type="range"
-              name=""
-              id=""
-              className=""
+              
+            
               min={8}
-              max={100}
+              max={15}
               value={length}
               onChange={(e) => {
                 setLength(e.target.value);
               }}
             />
 
-            <label   className="text-orange-500 size-1">
+            <label  htmlFor="numberInput" className="text-orange-500 size-1">
               Length ({length})
             </label>
             <input
               type="checkbox"
-              name=""
-              id=""
+             id="numberInput"
+           
               className="ml-2 p-1"
               defaultChecked={numberAllowed}
               onChange={() => {
                 setNumberAllowed((prev) => !prev);
               }}
             />
-            <label   className="text-orange-500">
+            <label    htmlFor="numberInput"   className="text-orange-500">
               Numbers
             </label>
             <input
               type="checkbox"
-              name=""
-              id=""
+             
+              id="characterInput"
               className="ml-2 p-1"
               defaultChecked={charAllowed}
               onChange={() => {
                 setCharAllowed((prev) => !prev);
               }}
             />
-            <label  className="text-orange-500">
+            <label htmlFor="characterInput" className="text-orange-500">
               Letters
             </label>
           </span>
